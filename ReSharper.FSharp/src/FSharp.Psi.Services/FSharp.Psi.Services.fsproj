@@ -38,18 +38,12 @@
       <OutputFile>src\Daemon\Highlightings\Errors.Generated.fs</OutputFile>
       <SubType>Designer</SubType>
     </ErrorsGen>
-    <Compile Include="src\Daemon\Highlightings\Errors.Generated.fs">
-      <DependentUpon>Errors.xml</DependentUpon>
-    </Compile>
     <ErrorsGen Include="src\Daemon\Highlightings\FcsErrors.xml">
       <Mode>ERRORS</Mode>
       <Namespace>JetBrains.ReSharper.Plugins.FSharp.Psi.Features.Daemon.Highlightings.FcsErrors</Namespace>
       <OutputFile>src\Daemon\Highlightings\FcsErrors.Generated.fs</OutputFile>
       <SubType>Designer</SubType>
     </ErrorsGen>
-    <Compile Include="src\Daemon\Highlightings\FcsErrors.Generated.fs">
-      <DependentUpon>FcsErrors.xml</DependentUpon>
-    </Compile>
     <Compile Include="src\Generate\IFSharpGeneratorElement.fs" />
     <Compile Include="src\Generate\GenerateOverrides.fs" />
     <Compile Include="src\Generate\GenerateProvider.fs" />
@@ -57,10 +51,22 @@
     <Compile Include="src\Refactorings\IntroduceVariable.fs" />
     <Compile Include="src\Refactorings\FSharpInlineVariable.fs" />
     <Compile Include="src\Refactorings\FSharpRefactoringLanguageService.fs" />
+    <EmbeddedResource Update="Resources\Strings.resx">
+      <Generator>JetResourceGenerator</Generator>
+      <LastGenOutput>Strings.Designer.fs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FSharp.Psi\FSharp.Psi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Resources\Strings.Designer.fs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   
   <Import Project="$(RiderBackendSubplatform)" Condition="Exists('$(RiderBackendSubplatform)')" />

@@ -6,6 +6,7 @@ open JetBrains.ReSharper.Psi.ExtensionsAPI
 open JetBrains.ReSharper.Psi.Tree
 open JetBrains.ReSharper.Resources.Shell
 open JetBrains.ReSharper.Plugins.FSharp.Psi.Features.Util.FSharpModulesUtil
+open JetBrains.ReSharper.Plugins.FSharp.Psi.Services.Resources
 
 [<ContextAction(Name = "ToModuleNamespace", Group = "F#", Description = "To module/namespace")>]
 type ToModuleNamespaceDeclarationAction(dataProvider: FSharpContextActionDataProvider) =
@@ -15,7 +16,7 @@ type ToModuleNamespaceDeclarationAction(dataProvider: FSharpContextActionDataPro
         declaration :? INamespaceDeclaration
 
     override x.Text =
-        if isNamespace (dataProvider.GetSelectedElement()) then "To module" else "To namespace"
+        if isNamespace (dataProvider.GetSelectedElement()) then Strings.ToModuleText else "To namespace"
 
     override x.IsAvailable _ =
         let moduleDeclaration = dataProvider.GetSelectedElement<IQualifiableModuleLikeDeclaration>()
